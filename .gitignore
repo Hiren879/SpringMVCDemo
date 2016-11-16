@@ -50,4 +50,4 @@ local.properties
 .recommenders/
 
 #lib
-lib/*
+*.jar
