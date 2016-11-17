@@ -7,12 +7,13 @@
 <title>Enter Student Details</title>
 </head>
 <body>
+	<h1>${headerMessage}</h1>
 	<form action="/SpringMVCDemo/submitAdmissionForm.html" method="post">
 		<p>
 			Student Name : <input type="text" name="studentName">
 		</p>
 		<p>
-			Student Hobby : <input type="text" name="hobby">
+			Student Hobby : <input type="text" name="studentHobby">
 		</p>
 		<input type="submit" value="Submit">
 	</form>

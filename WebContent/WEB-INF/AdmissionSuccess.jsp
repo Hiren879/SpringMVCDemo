@@ -7,6 +7,14 @@
 <title>Submitted Admission Detail</title>
 </head>
 <body>
-	 <h1>${msg}</h1>
+	 <h1>${headerMessage}</h1>
+	<table>
+		<tr>
+			<td>Student Name : ${objStudent.studentName}</td>
+		</tr>
+		<tr>
+			<td>Student Hobby : ${objStudent.studentHobby}</td>
+		</tr>
+	</table>
 </body>
 </html>
