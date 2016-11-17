@@ -4,7 +4,7 @@
   <servlet>
   	<servlet-name>spring-dispatcher</servlet-name>
   	<servlet-class>
-  		org.springframwork.web.servlet.DispatcherServlet
+  		org.springframework.web.servlet.DispatcherServlet
   	</servlet-class>
   </servlet>
   
