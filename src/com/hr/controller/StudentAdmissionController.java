@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,11 +74,14 @@ public class StudentAdmissionController {
 	 * @return : ModelView object for success jsp page with Student Object.
 	 */
 	@RequestMapping(value="/submitAdmissionForm.html", method=RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(@ModelAttribute("objStudent") Student objStudent) {
-		
+	public ModelAndView submitAdmissionForm(@ModelAttribute("objStudent") Student objStudent, BindingResult result) {
+		// BindingResult : this will help to catch all binding related errors 
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return new ModelAndView("AdmissionForm");
+		}
 		ModelAndView studentView = new ModelAndView("AdmissionSuccess"); // jsp page
 		// no need to even create & add objStudent in view object.
-		
 		return studentView;
 	}
 	

@@ -15,6 +15,24 @@
 		<tr>
 			<td>Student Hobby : ${objStudent.studentHobby}</td>
 		</tr>
+		<tr>
+			<td>Student Mobile : ${objStudent.studentMobile}</td>
+		</tr>
+		<tr>
+			<td>Student DOB : ${objStudent.studentDOB}</td>
+		</tr>
+		<tr>
+			<td>Student Skills : ${objStudent.studentSkills}</td>
+		</tr>
+		<tr>
+			<td>Student Address : </td>
+			<td> 
+				Country : ${objStudent.studentAddress.country}
+				City : ${objStudent.studentAddress.city}
+				Street : ${objStudent.studentAddress.street}
+				PinCode : ${objStudent.studentAddress.pincode}
+			</td>
+		</tr>
 	</table>
 </body>
 </html>
