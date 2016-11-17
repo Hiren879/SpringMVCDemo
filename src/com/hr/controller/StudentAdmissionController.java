@@ -1,10 +1,15 @@
 package com.hr.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +17,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hr.model.Student;
+import com.hr.util.StudentNameEditor;
 
 
-
+/**
+ * This class is responsible for handing all requests related to student admission form.
+ * @author hsavalia
+ *
+ */
 @Controller
 public class StudentAdmissionController {
+
+	/** This method is responsible for manipulating bindings before Spring actually binds data with instance variables.
+	 * @param binder
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		// do not bind "studentMobile"
+		// setDisallowedFields : This will exclude "studentMobile" attribute from binding to class Student.
+		binder.setDisallowedFields(new String[] {"studentMobile"});
+		
+		// customized date format
+		SimpleDateFormat objSimpleDateFormat = new SimpleDateFormat("yyyy--MM--dd");
+		binder.registerCustomEditor(Date.class, "studentDOB", new CustomDateEditor(objSimpleDateFormat, false));
+		
+		// customized property editor for student name
+		// Spring will not bind value for studenName until it consults to StudentNameEditor class here
+		binder.registerCustomEditor(String.class, "studentName", new StudentNameEditor());
+	}
 	
 	/**
 	 * This method will add this head message to all view which can be accessible through "headerMessage" attribute. 
