@@ -27,4 +27,10 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
         </property>
     </bean>
     
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    	<property name="basename" value="/WEB-INF/resource/messages"></property>
+    	<!-- Spring framework will reload messages after evert 1 second. NOT RECOMMENDED IN PRODUCTION ENVIRONMENT. 
+    	<property name="cacheSeconds" value="1"/> -->
+    </bean>
+    
 </beans>

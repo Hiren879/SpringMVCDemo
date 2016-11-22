@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,10 +38,12 @@ public class StudentAdmissionController {
 		// do not bind "studentMobile"
 		// setDisallowedFields : This will exclude "studentMobile" attribute from binding to class Student.
 		binder.setDisallowedFields(new String[] {"studentMobile"});
+		binder.setDisallowedFields(new String[] {"studentDOB"});
 		
 		// customized date format
-		SimpleDateFormat objSimpleDateFormat = new SimpleDateFormat("yyyy--MM--dd");
-		binder.registerCustomEditor(Date.class, "studentDOB", new CustomDateEditor(objSimpleDateFormat, false));
+		// 2012--12--12
+		/*SimpleDateFormat objSimpleDateFormat = new SimpleDateFormat("yyyy--MM--dd");
+		binder.registerCustomEditor(Date.class, "studentDOB", new CustomDateEditor(objSimpleDateFormat, false));*/
 		
 		// customized property editor for student name
 		// Spring will not bind value for studenName until it consults to StudentNameEditor class here
@@ -102,7 +106,9 @@ public class StudentAdmissionController {
 	 * @return : ModelView object for success jsp page with Student Object.
 	 */
 	@RequestMapping(value="/submitAdmissionForm.html", method=RequestMethod.POST)
-	public ModelAndView submitAdmissionForm(@ModelAttribute("objStudent") Student objStudent, BindingResult result) {
+	public ModelAndView submitAdmissionForm(@ModelAttribute("objStudent") @Valid Student objStudent, BindingResult result) {
+		// @Valid : Spring framework will validate student object when binding student object attribute to UI attributes.
+		// to use it add hibernate validation libraries [classmate, hibernate-validator, jboss-logging, validation-api]
 		// BindingResult : this will help to catch all binding related errors 
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());

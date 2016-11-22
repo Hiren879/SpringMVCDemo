@@ -3,10 +3,25 @@ package com.hr.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.hr.customValidators.IsValidHobby;
+
 public class Student {
+	
+	@Pattern(regexp="[^0-9]*")
 	private String studentName;
+	
+	// 0 : studentHobby
+	// 1 : min size
+	// 2 : max size
+	@Size(min=2, max=30) @IsValidHobby(listOfValidHobbies = "Music|Football|Cricket|Hockey")
 	private String studentHobby;
 	private Long studentMobile;
+	
+	@Past
 	private Date studentDOB;
 	private ArrayList<String> studentSkills;
 	private Address studentAddress;
