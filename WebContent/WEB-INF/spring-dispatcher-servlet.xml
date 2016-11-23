@@ -13,10 +13,26 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
     	
     <!-- <bean name="/welcome.html" class="com.hr.hellocontroller.HelloController"/>  -->
 
-	<context:component-scan base-package="com.hr.controller" />
+	<context:component-scan base-package="com.hr.controller, com.hr.exceptions" />
 	
-	<!-- for path variable -->
+	<!-- for path variable : @PathVariable see file StudentAdmissionController -->
 	<mvc:annotation-driven />
+	
+	
+	
+	<mvc:interceptors>
+		<!-- This intercepter will be called on each request sent to Spring container.-->
+			<!--  <bean class="com.hr.interceptor.StudentInterceptor" /> -->
+		
+		<!-- To call intercepter on specific URL you have to do like this -->
+		<mvc:interceptor>
+			<mvc:mapping path="/admissionForm.html"/>
+				<bean class="com.hr.interceptor.StudentInterceptor" />
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+	
+	
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix">
@@ -29,7 +45,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
     
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
     	<property name="basename" value="/WEB-INF/resource/messages"></property>
-    	<!-- Spring framework will reload messages after evert 1 second. NOT RECOMMENDED IN PRODUCTION ENVIRONMENT. 
+    	<!-- Spring framework will reload messages after every 1 second. NOT RECOMMENDED IN PRODUCTION ENVIRONMENT. 
     	<property name="cacheSeconds" value="1"/> -->
     </bean>
     

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,7 +77,12 @@ public class StudentAdmissionController {
 	}
 	
 	@RequestMapping(value="/admissionForm.html", method=RequestMethod.GET)
-	public ModelAndView getAdmissionForm() {
+	public ModelAndView getAdmissionForm() throws Exception {
+		String exceptionOccured = "NULL_POINTER";
+		
+		if (exceptionOccured.equalsIgnoreCase("NULL_POINTER")) {
+			throw new NullPointerException("Null pointer exception while calling getAdmissionForm using /admission.html URL.");
+		}
 		ModelAndView admissionFormView = new ModelAndView("AdmissionForm"); // jsp page
 		return admissionFormView;
 	}
@@ -118,6 +124,4 @@ public class StudentAdmissionController {
 		// no need to even create & add objStudent in view object.
 		return studentView;
 	}
-	
-	
 }
