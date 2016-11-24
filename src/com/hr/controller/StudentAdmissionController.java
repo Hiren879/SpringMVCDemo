@@ -1,22 +1,21 @@
 package com.hr.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hr.model.Student;
@@ -123,5 +122,45 @@ public class StudentAdmissionController {
 		ModelAndView studentView = new ModelAndView("AdmissionSuccess"); // jsp page
 		// no need to even create & add objStudent in view object.
 		return studentView;
+	}
+	
+	/**
+	 * This method is demo of REST web-service.
+	 * It will return list of students in JSON format.
+	 * It uses - jackson libraries : 1. Core 2. Databind 3. Annotation
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/students", method = RequestMethod.GET, produces = "application/json")
+	public List<Student> getStudentList() {
+		return getStaticStudentList();
+	}
+	
+	/**
+	 * This method is demo of REST web-service.
+	 * It will return list of students in XML format.
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/xmlStudents", method = RequestMethod.GET, produces = "application/xml")
+	public List<Student> getStudentListXML() {
+		return getStaticStudentList();
+	}
+
+	private List<Student> getStaticStudentList() {
+		Student objStudent1 = new Student();
+		Student objStudent2 = new Student();
+		Student objStudent3 = new Student();
+		
+		objStudent1.setStudentName("Jeo");
+		objStudent2.setStudentName("Jay");
+		objStudent3.setStudentName("Leo");
+		
+		List<Student> studentList = new ArrayList<>(3);
+		studentList.add(objStudent1);
+		studentList.add(objStudent2);
+		studentList.add(objStudent3);
+		
+		return studentList;
 	}
 }

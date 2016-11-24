@@ -11,6 +11,8 @@ import com.hr.customValidators.IsValidHobby;
 
 public class Student {
 	
+	public Student() {}
+	
 	@Pattern(regexp="[^0-9]*")
 	private String studentName;
 	
@@ -19,6 +21,7 @@ public class Student {
 	// 2 : max size
 	@Size(min=2, max=30) @IsValidHobby(listOfValidHobbies = "Music|Football|Cricket|Hockey")
 	private String studentHobby;
+	
 	private Long studentMobile;
 	
 	@Past

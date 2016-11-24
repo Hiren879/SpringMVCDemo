@@ -32,8 +32,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
 		
 	</mvc:interceptors>
 	
-	
-
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
         <property name="prefix">
             <value>/WEB-INF/</value>
