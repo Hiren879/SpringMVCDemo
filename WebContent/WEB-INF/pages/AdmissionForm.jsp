@@ -7,10 +7,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Enter Student Details</title>
+<title>AdmissionForm</title>
 </head>
 <body>
 	<h1>${headerMessage}</h1>
+	<h2>Welcome ${userName}. Please fill up following details</h2>
 	<form:errors path="objStudent.*"/>
 	
 	<form action="/SpringMVCDemo/submitAdmissionForm.html" method="post">
@@ -26,6 +27,7 @@
 			</tr>
 			<tr>
 				<td>Student DOB : </td><td> <input type="text" name="studentDOB" /> </td>
+				<td>Sample : 2012--12--12</td>
 			</tr>
 			<tr>
 				<td>Student Skills Set : </td>
@@ -50,5 +52,6 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
+	<a href="/SpringMVCDemo/logout"> Logout</a>
 </body>
 </html>

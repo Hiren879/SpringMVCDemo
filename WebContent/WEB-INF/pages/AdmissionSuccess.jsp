@@ -34,5 +34,6 @@
 			</td>
 		</tr>
 	</table>
+	<a href="/SpringMVCDemo/admissionForm.html">Back</a>
 </body>
 </html>

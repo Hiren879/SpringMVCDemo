@@ -1,11 +1,14 @@
 package com.hr.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,13 +40,13 @@ public class StudentAdmissionController {
 	public void initBinder(WebDataBinder binder) {
 		// do not bind "studentMobile"
 		// setDisallowedFields : This will exclude "studentMobile" attribute from binding to class Student.
-		binder.setDisallowedFields(new String[] {"studentMobile"});
-		binder.setDisallowedFields(new String[] {"studentDOB"});
+		// binder.setDisallowedFields(new String[] {"studentMobile"});
+		// binder.setDisallowedFields(new String[] {"studentDOB"});
 		
 		// customized date format
-		// 2012--12--12
-		/*SimpleDateFormat objSimpleDateFormat = new SimpleDateFormat("yyyy--MM--dd");
-		binder.registerCustomEditor(Date.class, "studentDOB", new CustomDateEditor(objSimpleDateFormat, false));*/
+		// 2012--12--31
+		SimpleDateFormat objSimpleDateFormat = new SimpleDateFormat("yyyy--MM--dd");
+		binder.registerCustomEditor(Date.class, "studentDOB", new CustomDateEditor(objSimpleDateFormat, false));
 		
 		// customized property editor for student name
 		// Spring will not bind value for studenName until it consults to StudentNameEditor class here
@@ -56,7 +59,7 @@ public class StudentAdmissionController {
 	 */
 	@ModelAttribute
 	public void addCommonHeader(Model objModel) {
-		objModel.addAttribute("headerMessage","DA-IICT, Gandhinagar");
+		objModel.addAttribute("headerMessage","Welcome to DA-IICT, Gandhinagar");
 	}
  
 	@RequestMapping("/hello/{userName}")
@@ -77,11 +80,11 @@ public class StudentAdmissionController {
 	
 	@RequestMapping(value="/admissionForm.html", method=RequestMethod.GET)
 	public ModelAndView getAdmissionForm() throws Exception {
-		String exceptionOccured = "NULL_POINTER";
+		/*String exceptionOccured = "NULL_POINTER";
 		
 		if (exceptionOccured.equalsIgnoreCase("NULL_POINTER")) {
 			throw new NullPointerException("Null pointer exception while calling getAdmissionForm using /admission.html URL.");
-		}
+		}*/
 		ModelAndView admissionFormView = new ModelAndView("AdmissionForm"); // jsp page
 		return admissionFormView;
 	}
