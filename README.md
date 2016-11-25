@@ -16,4 +16,4 @@ This is demo project using Spring MVC framework.
 12. Exception handling
 13. Web Services - REST returning JSON & XML response
 14. Spring Security
-  a. simmple http based widnows authentication
+  * simmple http based widnows authentication
