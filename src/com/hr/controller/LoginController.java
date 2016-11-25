@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
+	/**
+	 * This method will be entry point for the application.
+	 * @return
+	 */
+	@RequestMapping(value = "/*", method = RequestMethod.GET)
+	public String home() {
+		return "Home";
+	}
+	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String getWelcomePage(Model model, Principal principal) {
 		System.out.println("In login controller");
@@ -22,7 +31,21 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap model) {
+		System.out.println("in log in");
 		return "login";
 	}
+	
+	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+	public String loginfailed(ModelMap model) {
+		System.out.println("in log in fail");
+		model.addAttribute("error",true);
+		return "login";
+	}
+	
+	/*@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		System.out.println("in log out");
+		return "login";
+	}*/
 	
 }

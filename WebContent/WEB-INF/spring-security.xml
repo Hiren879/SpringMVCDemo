@@ -7,18 +7,36 @@
 		 					 http://www.springframework.org/schema/security
 		 					 http://www.springframework.org/schema/security/spring-security.xsd">
 
+	<!-- windows based simple authentication 
 	<http>
 		<intercept-url pattern="/welcome*" access="hasRole('ROLE_ADMIN')"/>
 		<http-basic/>
-		<!-- <form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/loginfailed"/>
-		<logout logout-success-url="/logout"/> -->	
+	</http> 
+	-->
+	
+	<!-- This is default Spring form UI 
+	<http>
+		<intercept-url pattern="/welcome*" access="hasRole('ROLE_ADMIN')"/>
+		<form-login/>
+		<logout logout-success-url="/home" />
+	</http> 
+	-->
+	
+	<!-- Customized form -->
+	<http>
+		<intercept-url pattern="/welcome*" access="hasRole('ROLE_ADMIN')"/>
+		<form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout" />
+		<csrf disabled="true"/>
 	</http>
-
+	
 	<authentication-manager>
 		<authentication-provider>
-			<user-service>
-				<user name="admin" password="admin" authorities="ROLE_ADMIN"/>
-			</user-service>
+			<password-encoder hash="sha-256" />
+				<user-service>
+					<user name="admin" password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" authorities="ROLE_ADMIN"/>
+				</user-service>
 		</authentication-provider>
 	</authentication-manager>
+	
 </beans:beans>

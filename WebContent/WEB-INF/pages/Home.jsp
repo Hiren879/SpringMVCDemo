@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Welcome to Spring MVC Demo</title>
 </head>
 <body>
-
-<h3>Message : ${message}</h3>
-<h3>User Name : ${userName}</h3>
-<a href="<c:url value="/logout"/>">Logout</a>
+	<h3>Welcome to Spring MVC Demo project</h3>
+	<a href="/SpringMVCDemo/welcome">
+		<b>Click here to log in</b>
+	</a>
 </body>
 </html>
