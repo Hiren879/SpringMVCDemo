@@ -17,3 +17,5 @@ This is demo project using Spring MVC framework.
 13. Web Services - REST returning JSON & XML response
 14. Spring Security
   * simmple http based widnows authentication
+  * Spring's default form authentication
+  * custom form authentication
