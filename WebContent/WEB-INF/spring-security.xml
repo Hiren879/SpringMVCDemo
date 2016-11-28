@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-		 xmlns:beans="http://www.springframework.org/schema/beans"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://www.springframework.org/schema/beans
-		 					 http://www.springframework.org/schema/beans/spring-beans.xsd
-		 					 http://www.springframework.org/schema/security
-		 					 http://www.springframework.org/schema/security/spring-security.xsd">
+<beans:beans
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans.xsd 
+            http://www.springframework.org/schema/security 
+            http://www.springframework.org/schema/security/spring-security-4.2.xsd"> 
 
 	<!-- windows based simple authentication 
 	<http>
@@ -30,12 +31,26 @@
 		<csrf disabled="true"/>
 	</http>
 	
+	
+	
+	<!-- Password encryption using hashing. 
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder hash="sha-256" />
 				<user-service>
 					<user name="admin" password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" authorities="ROLE_ADMIN"/>
 				</user-service>
+		</authentication-provider>
+	</authentication-manager> 
+	-->
+	
+	<!-- Using database connection. Oracle Database configuration -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username,password,enabled from user_authentication where username=?"
+				authorities-by-username-query="select u1.username, u2.role from user_authentication u1, user_authorization u2 where u1.user_id = u2.user_id and u1.username =?" />
 		</authentication-provider>
 	</authentication-manager>
 	

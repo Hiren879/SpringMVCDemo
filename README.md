@@ -18,4 +18,5 @@ This is demo project using Spring MVC framework.
 14. Spring Security
   * simmple http based widnows authentication
   * Spring's default form authentication
-  * custom form authentication
+  * custom form authentication with password in encrypted format
+  * through oracle database connection
