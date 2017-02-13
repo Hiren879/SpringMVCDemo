@@ -20,3 +20,4 @@ This is demo project using Spring MVC framework.
   * Spring's default form authentication
   * custom form authentication with password in encrypted format
   * through oracle database connection
+15. Added RESTful service [method] for angular demo project which returns list of Hero's objects.
